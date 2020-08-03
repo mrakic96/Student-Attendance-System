@@ -67,6 +67,23 @@
                         </div>
                       </div>
                       {{-- Kraj petlje --}}
+
+                      {{-- Iteriramo sve uloge kroz petlju--}}
+                      <div class="form-group row">
+                        <label class="col-md-2 col-form-label text-md-right">Kolegiji</label>
+                          <div class="col-md-6">
+                            <br>
+                            @foreach ($subjects as $subject)
+                                  <div class="form-check">
+                                      <input type="checkbox" name="roles[]" value="{{ $role->id }}">
+                                      <label>{{ $subject->name }}</label>
+                                  </div>
+                            @endforeach
+                          </div>
+                        </div>
+                        {{-- Kraj petlje --}}
+
+                      
                       <button type="submit" class="btn btn-primary float-right">Spremi</button>
                   </form>
                     

@@ -43,6 +43,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role');
     }
 
+    public function subjects()
+    {
+        return $this->belongsToMany('App\Subject');
+    }
+
     // F-ja provjerava ima li neki user više uloga
     public function hasAnyRoles($roles)
     {
@@ -57,6 +62,26 @@ class User extends Authenticatable
     public function hasRole($role)
     {   
         if($this->roles()->where('name', $role)->first()){
+            return true;
+        }
+
+        return false;
+    }
+
+    // F-ja provjerava ima li neki user više kolegija
+    public function hasAnySubjects($subjects)
+    {
+        if($this->subjects()->whereIn('name', $subjects)->first()){
+            return true;
+        }
+
+        return false;
+    }
+
+    // F-ja provjerava ima li neki user određeni kolegij
+    public function hasSubject($subject)
+    {   
+        if($this->subjects()->where('name', $subject)->first()){
             return true;
         }
 

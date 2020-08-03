@@ -40,7 +40,7 @@
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger" title="Izbriši korisnika"><i class="far fa-trash-alt"></i></button>
-                                </form>
+                                </form> 
                             </td>
                           </tr>
                         @endforeach

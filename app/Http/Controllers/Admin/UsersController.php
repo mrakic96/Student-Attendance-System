@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use App\Subject;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,7 +38,11 @@ class UsersController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('admin.users.create')->with('roles', $roles);
+        $subjects = Subject::all();
+        return view('admin.users.create')->with([
+            'roles' => $roles,
+            'subjects' => $subjects
+            ]);
     }
 
     /**
@@ -48,11 +53,14 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
-        ])->roles()->sync($request->roles);
+        ]);
+
+        $user->roles()->sync($request->roles);
+        $user->subjects()->sync($request->subjects);
 
         return redirect(route('admin.users.index'));
     }
@@ -81,10 +89,12 @@ class UsersController extends Controller
         }
 
         $roles = Role::all();
+        $subjects = Subject::all();
 
         return view('admin.users.edit')->with([
             'user' => $user,
-            'roles' => $roles
+            'roles' => $roles,
+            'subjects' => $subjects
             ]);
     }
 
@@ -98,6 +108,7 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         $user->roles()->sync($request->roles);
+        $user->subjects()->sync($request->subjects);
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -125,6 +136,7 @@ class UsersController extends Controller
         }
 
         $user->roles()->detach();
+        $user->subjects()->detach();
         $user->delete();
 
         return redirect()->route('admin.users.index');
