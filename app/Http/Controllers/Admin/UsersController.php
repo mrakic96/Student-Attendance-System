@@ -54,8 +54,6 @@ class UsersController extends Controller
             'password' => Hash::make($request->password)
         ])->roles()->sync($request->roles);
 
-        // $user->roles()->sync($request->roles);
-
         return redirect(route('admin.users.index'));
     }
 
@@ -104,8 +102,13 @@ class UsersController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
 
-        $user->save();
+        if($user->save()){
+            $request->session()->flash('success', 'Korisnik "'.$user->name.'" je uspješno ažuriran.');
+        } else {
+            $request->session()->flash('error', 'Došlo je do greške pri ažuraciji');
+        }
         
+
         return redirect()->route('admin.users.index');
     }
 
