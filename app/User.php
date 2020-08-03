@@ -36,4 +36,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Veza sa modelom Role
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
+
+    // F-ja provjerava ima li neki user više uloga
+    public function hasAnyRoles($roles)
+    {
+        if($this->roles()->whereIn('name', $roles)->first()){
+            return true;
+        }
+
+        return false;
+    }
+
+    // F-ja provjerava ima li neki user određenu ulogu
+    public function hasRole($role)
+    {   
+        if($this->roles()->where('name', $role)->first()){
+            return true;
+        }
+
+        return false;
+    }
 }
