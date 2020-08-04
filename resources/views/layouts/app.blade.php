@@ -19,6 +19,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script type="text/javascript">
+
+        function studentCheck() {
+            if (document.getElementsById('yesCheck').checked) {
+                document.getElementById('ifYes').style.display = 'block';
+            } else {
+                document.getElementById('ifYes').style.display = 'none';
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="app">
@@ -94,5 +105,6 @@
             </div>
         </main>
     </div>
+    
 </body>
 </html>

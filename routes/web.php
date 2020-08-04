@@ -27,3 +27,5 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     Route::resource('/subjects', 'SubjectsController', ['except' => 'show']);
 
 });
+
+Route::resource('/attendances', 'AttendancesController', ['except' => 'show']);

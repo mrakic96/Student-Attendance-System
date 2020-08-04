@@ -14,4 +14,9 @@ class Subject extends Model
     {
         return $this->belongsToMany('App\Role');
     }
+
+    public function attendances(){
+
+        return $this->hasMany('App\Attendance');
+    }
 }
