@@ -7,6 +7,7 @@ use App\User;
 use App\Role;
 use App\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AttendancesController extends Controller
 {
@@ -60,7 +61,32 @@ class AttendancesController extends Controller
      */
     public function show(Attendance $attendance)
     {
-        //
+        $users = User::all();
+        return view ('attendances.show')->with([ 
+            'attendance'=> $attendance,
+            'users' => $users
+        ]);
+    }
+
+    public function updateattendance(Request $request, Attendance $attendance)
+    {   
+        $users = User::all();
+        $prisutnosti =$request->attendance;
+
+        dd($prisutnosti);
+
+        // for($i=0; $i<$prisutnosti.count(); $i++){
+        //     $prisutan[i] = $prisutnosti[i];
+        // }
+
+        // foreach($users as $user)
+        //     if($user->hasSubject($attendance->subject->name))
+                
+
+        //     if($user->hasSubject($attendance->subject->name))
+        //         DB::insert('insert into attendance_user (attendance_id, user_id, attendance) values (?, ?, ?)', [$attendance->id, $user->id, $request->attendance]);   
+        
+        // return redirect()->route('attendances.index');
     }
 
     /**
@@ -112,6 +138,6 @@ class AttendancesController extends Controller
     {
         $attendance->delete();
         return redirect()->route('attendances.index');
-        
     }
+
 }

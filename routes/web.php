@@ -24,8 +24,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
 
     Route::resource('/users', 'UsersController', ['except' => 'show']);
+    Route::get('/users/administratori', 'UsersController@administratori')->name('users.administratori');
+    Route::get('/users/profesori', 'UsersController@profesori')->name('users.profesori');
     Route::resource('/subjects', 'SubjectsController', ['except' => 'show']);
 
 });
 
-Route::resource('/attendances', 'AttendancesController', ['except' => 'show']);
+Route::resource('/attendances', 'AttendancesController')->middleware('can:manage-attendances');
+Route::put('/attendances/{attendance}', 'AttendancesController@updateattendance')->name('attendances.updateattendance');
+

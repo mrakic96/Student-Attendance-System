@@ -80,6 +80,12 @@
                                         Kolegiji
                                     </a>
                                     @endcan
+
+                                    @can('manage-attendances')
+                                    <a class="dropdown-item" href="{{ route('attendances.index') }}">
+                                        Predavanja
+                                    </a>
+                                    @endcan
                                     
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

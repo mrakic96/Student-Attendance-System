@@ -17,10 +17,10 @@
                     <a class="nav-link" href="{{ route('admin.users.administratori') }}">Administratori</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.users.profesori') }}">Profesori</a>
+                    <a class="nav-link active" href="#">Profesori</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="#">Studenti</a>
+                    <a class="nav-link" href="{{ route('admin.users.index') }}">Studenti</a>
                   </li>
                 </ul>
                 <div class="card-body">
@@ -32,7 +32,6 @@
                             <th scope="col">Ime</th>
                             <th scope="col">Email</th>
                             <th scope="col">Uloga/e</th>
-                            <th scope="col">Kolegiji</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
@@ -40,13 +39,12 @@
                         {{-- Iteriramo sve usere kroz petlju --}}
                         @foreach ($users as $user)
                           <tr>
-                            @if ($user->hasRole('student'))
+                            @if ($user->hasRole('profesor'))
                                 
                             <th scope="row">{{ $user->id }}</th>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
-                            <td>{{ implode(', ', $user->subjects()->get()->pluck('name')->toArray()) }}</td>
                             <td>
                                 {{-- BUTTONS --}}
                                 <a href="{{ route('admin.users.edit', $user->id) }}"><button type="button" class="btn btn-primary float-left" title="Uredi korisnika" style="margin-right: 2px;"><i class="far fa-edit"></i></button></a>

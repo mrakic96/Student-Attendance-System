@@ -18,6 +18,8 @@ class UsersTableSeeder extends Seeder
             prije seedanja kako ne bi duplali podatke */
         User::truncate();
         DB::table('role_user')->truncate();
+        DB::table('attendance_user')->truncate();
+        DB::table('subject_user')->truncate();
 
         // Dohvaćamo nazive uloga iz tabele Role i spremamo ih u varijable
         $adminRole = Role::where('name', 'admin')->first();

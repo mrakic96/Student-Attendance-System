@@ -14,4 +14,9 @@ class Attendance extends Model
 
         return $this->belongsTo('App\Subject');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

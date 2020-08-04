@@ -29,6 +29,16 @@ class UsersController extends Controller
         $users = User::all();
         return view('admin.users.index')->with('users', $users);
     }
+    public function profesori()
+    {
+        $users = User::all();
+        return view('admin.users.profesori')->with('users', $users);
+    }
+    public function administratori()
+    {
+        $users = User::all();
+        return view('admin.users.administratori')->with('users', $users);
+    }
 
     /**
      * Show the form for creating a new resource.

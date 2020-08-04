@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Subject');
     }
 
+    public function attendances()
+    {
+        return $this->belongsToMany('App\Attendance');
+    }
+
     // F-ja provjerava ima li neki user više uloga
     public function hasAnyRoles($roles)
     {

@@ -12,7 +12,7 @@ class Subject extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\Role');
+        return $this->belongsToMany('App\User');
     }
 
     public function attendances(){
