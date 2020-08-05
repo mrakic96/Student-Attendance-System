@@ -14,10 +14,10 @@ class SubjectsTableSeeder extends Seeder
     {
         Subject::truncate();
 
-        Subject::create(['name' => 'Matematika 1']);
-        Subject::create(['name' => 'Matematika 2']);
-        Subject::create(['name' => 'Programiranje 1']);
-        Subject::create(['name' => 'Programiranje 2']);   
-            
+        Subject::create(['name' => 'Matematika 1', 'totalHeld' => 0]);
+        Subject::create(['name' => 'Matematika 2','totalHeld' => 0]);
+        Subject::create(['name' => 'Programiranje 1', 'totalHeld' => 0]);
+        Subject::create(['name' => 'Programiranje 2', 'totalHeld' => 0]);
+
     }
 }

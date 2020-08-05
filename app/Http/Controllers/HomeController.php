@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -25,4 +27,16 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function profile()
+    {
+        $subjects = Auth::user()->subjects()->get()->pluck('name')->all();
+        $totalHeldNums = Auth::user()->subjects()->get()->pluck('totalHeld')->all();
+        return view('profile')->with([
+            'subjects' => $subjects,
+            'totalHeldNums' => $totalHeldNums
+        ]);
+    }
+
+
 }

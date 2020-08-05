@@ -49,7 +49,7 @@ class AttendancesController extends Controller
             'date' => $request->date,
             'subject_id' => $request->subject
         ]);
-
+        DB::table('subjects')->where('id', $attendance->subject_id)->increment('totalHeld');
         return redirect(route('attendances.index'));
     }
 
@@ -61,11 +61,7 @@ class AttendancesController extends Controller
      */
     public function show(Attendance $attendance)
     {
-        // $users = User::all();
-        // return view ('attendances.show')->with([
-        //     'attendance'=> $attendance,
-        //     'users' => $users
-        // ]);
+
     }
 
     public function editattendance(Attendance $attendance)
@@ -136,6 +132,7 @@ class AttendancesController extends Controller
     public function destroy(Attendance $attendance)
     {
         $attendance->delete();
+        DB::table('subjects')->where('id', $attendance->subject_id)->decrement('totalHeld');
         return redirect()->route('attendances.index');
     }
 
