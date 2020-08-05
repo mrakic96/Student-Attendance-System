@@ -8,7 +8,7 @@
             
             <div class="card">
                 
-                <div class="card-header">Predavanje iz kolegija {{ $attendance->subject->name }} na datum {{ $attendance->date }}
+                <div class="card-header">Predavanje iz kolegija {{ $attendance->id }} {{ $attendance->subject->name }} na datum {{ $attendance->date }}
                 </div>
 
                 <div class="card-body">
@@ -35,7 +35,8 @@
                                         {{-- <label for="attendance" class="col-md-2 col-form-label text-md-right">prisutan</label> --}}
 
                                         <div class="col-md-6">
-                                            <input id="attendance" type="text" class="form-control" name="attendance" required>
+                                            {{-- <input type="hidden" name="user-id" value="{{ $user->id }}"/> --}}
+                                            <input id="attendance[]" type="text" class="form-control" name="attendance[{{ $user->id }}]" required>
                                         </div>
                                     </td>
                                 </tr>

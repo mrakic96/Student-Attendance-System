@@ -47,7 +47,7 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
                             <td>{{ implode(', ', $user->subjects()->get()->pluck('name')->toArray()) }}</td>
-                            <td>
+                            <td style="width: 120px;">
                                 {{-- BUTTONS --}}
                                 <a href="{{ route('admin.users.edit', $user->id) }}"><button type="button" class="btn btn-primary float-left" title="Uredi korisnika" style="margin-right: 2px;"><i class="far fa-edit"></i></button></a>
                                 <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="float-left">

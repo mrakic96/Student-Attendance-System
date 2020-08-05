@@ -30,6 +30,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 
 });
 
-Route::resource('/attendances', 'AttendancesController')->middleware('can:manage-attendances');
-Route::put('/attendances/{attendance}', 'AttendancesController@updateattendance')->name('attendances.updateattendance');
+Route::resource('/attendances', 'AttendancesController', ['except' => 'show'])->middleware('can:manage-attendances');
+Route::get('/attendances/{attendance}/editattendance', 'AttendancesController@editattendance')->name('attendances.editattendance');
+Route::put('/attendances/{attendance}/update', 'AttendancesController@updateattendance')->name('attendances.updateattendance');
 

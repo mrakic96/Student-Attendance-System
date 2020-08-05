@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\User;
-use App\Role;
+// use App\Role;
 use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -61,32 +61,31 @@ class AttendancesController extends Controller
      */
     public function show(Attendance $attendance)
     {
+        // $users = User::all();
+        // return view ('attendances.show')->with([
+        //     'attendance'=> $attendance,
+        //     'users' => $users
+        // ]);
+    }
+
+    public function editattendance(Attendance $attendance)
+    {
         $users = User::all();
-        return view ('attendances.show')->with([ 
+        return view ('attendances.editattendance')->with([
             'attendance'=> $attendance,
             'users' => $users
         ]);
     }
 
     public function updateattendance(Request $request, Attendance $attendance)
-    {   
-        $users = User::all();
-        $prisutnosti =$request->attendance;
+    {
 
-        dd($prisutnosti);
+        foreach($request->attendance as $key => $value) {
+            DB::insert('insert into attendance_user (attendance_id, user_id, attendance) values (?, ?, ?)',
+            [$attendance->id, $key, $value]);
+        }
 
-        // for($i=0; $i<$prisutnosti.count(); $i++){
-        //     $prisutan[i] = $prisutnosti[i];
-        // }
-
-        // foreach($users as $user)
-        //     if($user->hasSubject($attendance->subject->name))
-                
-
-        //     if($user->hasSubject($attendance->subject->name))
-        //         DB::insert('insert into attendance_user (attendance_id, user_id, attendance) values (?, ?, ?)', [$attendance->id, $user->id, $request->attendance]);   
-        
-        // return redirect()->route('attendances.index');
+        return redirect()->route('attendances.index');
     }
 
     /**
@@ -123,7 +122,7 @@ class AttendancesController extends Controller
         } else {
             $request->session()->flash('error', 'Došlo je do greške pri ažuraciji');
         }
-        
+
 
         return redirect()->route('attendances.index');
     }

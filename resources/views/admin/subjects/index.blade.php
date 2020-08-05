@@ -9,7 +9,7 @@
             <div class="card">
                 
                 <div class="card-header">Kolegiji
-                <a href="{{ route('admin.subjects.create') }}"><button type="button" class="btn btn-primary btn float-right" title="Novi kolegij"><i class="fas fa-user-plus"></i></button></a>
+                <a href="{{ route('admin.subjects.create') }}"><button type="button" class="btn btn-primary btn float-right" title="Novi kolegij"><i class="fas fa-plus"></i></button></a>
 
                 </div>
 

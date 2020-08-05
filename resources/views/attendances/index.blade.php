@@ -9,7 +9,7 @@
             <div class="card">
                 
                 <div class="card-header">Predavanja
-                <a href="{{ route('attendances.create') }}"><button type="button" class="btn btn-primary btn float-right" title="Novo predavanje"><i class="fas fa-user-plus"></i></button></a>
+                <a href="{{ route('attendances.create') }}"><button type="button" class="btn btn-primary btn float-right" title="Novo predavanje"><i class="fas fa-plus"></i></button></a>
 
                 </div>
 
@@ -36,7 +36,7 @@
                             <td>
                                 {{-- BUTTONS --}}
                                 <a href="{{ route('attendances.edit', $attendance->id) }}"><button type="button" class="btn btn-primary float-left" title="Uredi kolegij" style="margin-right: 5px;"><i class="far fa-edit"></i></button></a>
-                                <a href="{{ route('attendances.show', $attendance->id) }}"><button type="button" class="btn btn-primary float-left" title="Uredi kolegij" style="margin-right: 5px;">Prisutnost</button></a>
+                                <a href="{{ route('attendances.editattendance', $attendance->id) }}"><button type="button" class="btn btn-primary float-left" title="Unesi prisutnost studenata" style="margin-right: 5px;">Prisutnost</button></a>
                                 <form action="{{ route('attendances.destroy', $attendance) }}" method="POST" class="float-left">
                                     @csrf
                                     {{ method_field('DELETE') }}
