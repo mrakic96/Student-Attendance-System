@@ -36,3 +36,4 @@ Route::get('/attendances/{attendance}/editattendance', 'AttendancesController@ed
 Route::put('/attendances/{attendance}/update', 'AttendancesController@updateattendance')->name('attendances.updateattendance');
 
 
+
