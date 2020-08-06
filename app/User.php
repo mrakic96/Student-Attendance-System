@@ -37,7 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Veza sa modelom Role
+    /* Veze sa drugim modelima
+    *   @Role
+    *   @Subject
+    *   @Attendance
+    */
     public function roles()
     {
         return $this->belongsToMany('App\Role');
@@ -53,7 +57,12 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Attendance');
     }
 
-    // F-ja provjerava ima li neki user više uloga
+    /*----------------------------------------------------*/
+
+    /* F-ja provjerava ima li neki user više uloga.
+     *
+     * @return boolean
+     */
     public function hasAnyRoles($roles)
     {
         if($this->roles()->whereIn('name', $roles)->first()){
@@ -63,9 +72,12 @@ class User extends Authenticatable
         return false;
     }
 
-    // F-ja provjerava ima li neki user određenu ulogu
+    /* F-ja provjerava ima li neki user određenu ulogu.
+     *
+     * @return boolean
+     */
     public function hasRole($role)
-    {   
+    {
         if($this->roles()->where('name', $role)->first()){
             return true;
         }
@@ -73,7 +85,10 @@ class User extends Authenticatable
         return false;
     }
 
-    // F-ja provjerava ima li neki user više kolegija
+    /* F-ja provjerava ima li neki user više kolegija.
+     *
+     * @return boolean
+     */
     public function hasAnySubjects($subjects)
     {
         if($this->subjects()->whereIn('name', $subjects)->first()){
@@ -83,9 +98,12 @@ class User extends Authenticatable
         return false;
     }
 
-    // F-ja provjerava ima li neki user određeni kolegij
+    /* F-ja provjerava ima li neki user određeni kolegij.
+     *
+     * @return boolean
+     */
     public function hasSubject($subject)
-    {   
+    {
         if($this->subjects()->where('name', $subject)->first()){
             return true;
         }

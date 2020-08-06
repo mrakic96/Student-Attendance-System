@@ -13,15 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Pocetni view - index page
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
+//Auth routes
 Auth::routes(['register' => false]);
 
+//Dashboard i korisnicki profil
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 
+//Admin panel
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
 
     Route::resource('/users', 'UsersController', ['except' => 'show']);
@@ -31,6 +35,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 
 });
 
+//Predavanja
 Route::resource('/attendances', 'AttendancesController', ['except' => 'show'])->middleware('can:manage-attendances');
 Route::get('/attendances/{attendance}/editattendance', 'AttendancesController@editattendance')->name('attendances.editattendance');
 Route::put('/attendances/{attendance}/update', 'AttendancesController@updateattendance')->name('attendances.updateattendance');

@@ -10,6 +10,10 @@ class Attendance extends Model
         'description', 'date', 'subject_id',
     ];
 
+    /* Veze sa drugim modelima
+    *   @Subject
+    *   @User
+    */
     public function subject(){
 
         return $this->belongsTo('App\Subject');
@@ -19,4 +23,5 @@ class Attendance extends Model
     {
         return $this->belongsToMany('App\User');
     }
+    /*-------------------------------*/
 }

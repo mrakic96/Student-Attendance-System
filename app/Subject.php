@@ -10,6 +10,10 @@ class Subject extends Model
         'name',
     ];
 
+    /* Veze sa drugim modelima
+    *   @User
+    *   @Attendance
+    */
     public function users()
     {
         return $this->belongsToMany('App\User');
@@ -19,4 +23,5 @@ class Subject extends Model
 
         return $this->hasMany('App\Attendance');
     }
+    /*------------------------------------------*/
 }
