@@ -40,6 +40,19 @@ class UsersController extends Controller
         return view('admin.users.administratori')->with('users', $users);
     }
 
+    public function profile(User $user)
+    {
+        $subjects = $user->subjects()->get()->pluck('name', 'id')->all();
+        $totalHeldNums = $user->subjects()->get()->pluck('totalHeld')->all();
+
+        return view ('admin.users.profile')->with([
+            'user' => $user,
+            'subjects' => $subjects,
+            'totalHeldNums' => $totalHeldNums
+        ]);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -83,7 +96,14 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $subjects = $user->subjects()->get()->pluck('name', 'id')->all();
+        $totalHeldNums = $user->subjects()->get()->pluck('totalHeld')->all();
+
+        return view ('admin.users.show')->with([
+            'user' => $user,
+            'subjects' => $subjects,
+            'totalHeldNums' => $totalHeldNums
+        ]);
     }
 
     /**
@@ -93,7 +113,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
-    {   
+    {
         if(Gate::denies('manage-users')){
             return redirect(route('admin.users.index'));
         }
@@ -128,7 +148,7 @@ class UsersController extends Controller
         } else {
             $request->session()->flash('error', 'Došlo je do greške pri ažuraciji');
         }
-        
+
 
         return redirect()->route('admin.users.index');
     }

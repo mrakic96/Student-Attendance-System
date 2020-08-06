@@ -27,10 +27,13 @@ Route::get('/profile', 'HomeController@profile')->name('profile');
 
 //Admin panel
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-
+//    Useri
     Route::resource('/users', 'UsersController', ['except' => 'show']);
     Route::get('/users/administratori', 'UsersController@administratori')->name('users.administratori');
     Route::get('/users/profesori', 'UsersController@profesori')->name('users.profesori');
+    Route::get('/users/{user}/profile/', 'UsersController@profile')->name('users.profile');
+
+//    Kolegiji
     Route::resource('/subjects', 'SubjectsController', ['except' => 'show']);
 
 });
@@ -42,6 +45,7 @@ Route::put('/attendances/{attendance}/update', 'AttendancesController@updateatte
 
 //PDF files
 Route::get('/pdf-download', 'PDFController@PDFGenerator')->name('pdfdownload');
+Route::get('/{user}/pdf-download', 'PDFController@PDFGeneratorAdmin')->name('pdfdownload2');
 
 
 

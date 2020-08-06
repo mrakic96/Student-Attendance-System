@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
 
         <div class="col-md-8">
-            
+
             <div class="card">
-                
+
                 <div class="card-header">Korisnici
                 <a href="{{ route('admin.users.create') }}"><button type="button" class="btn btn-primary btn float-right" title="Novi korisnik"><i class="fas fa-user-plus"></i></button></a>
 
@@ -24,7 +24,7 @@
                   </li>
                 </ul>
                 <div class="card-body">
-                    
+
                     <table class="table">
                         <thead>
                           <tr>
@@ -32,7 +32,10 @@
                             <th scope="col">Ime</th>
                             <th scope="col">Email</th>
                             <th scope="col">Uloga/e</th>
-                            <th scope="col">Action</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+
                           </tr>
                         </thead>
                         <tbody>
@@ -40,25 +43,29 @@
                         @foreach ($users as $user)
                           <tr>
                             @if ($user->hasRole('admin'))
-                                
-                            <th scope="row">{{ $user->id }}</th>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
-                            <td>
-                                {{-- BUTTONS --}}
-                                <a href="{{ route('admin.users.edit', $user->id) }}"><button type="button" class="btn btn-primary float-left" title="Uredi korisnika" style="margin-right: 2px;"><i class="far fa-edit"></i></button></a>
-                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="float-left">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger" title="Izbriši korisnika"><i class="far fa-trash-alt"></i></button>
-                                </form> 
-                            </td>
+
+                              <th scope="row">{{ $user->id }}</th>
+                              <td>{{ $user->name }}</td>
+                              <td>{{ $user->email }}</td>
+                              <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
+                              <td>
+                                  <a href="{{ route('admin.users.profile', $user->id) }}"><button type="button" class="btn btn-primary float-left" title="Informacije o korisniku" style="margin-right: 2px;"><i class="far fa-eye"></i></button></a>
+                              </td>
+                              <td>
+                                  <a href="{{ route('admin.users.edit', $user->id) }}"><button type="button" class="btn btn-primary float-left" title="Uredi korisnika" style="margin-right: 2px;"><i class="far fa-edit"></i></button></a>
+                              </td>
+                              <td>
+                                  <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="float-left">
+                                      @csrf
+                                      {{ method_field('DELETE') }}
+                                      <button type="submit" class="btn btn-danger" title="Izbriši korisnika"><i class="far fa-trash-alt"></i></button>
+                                  </form>
+                              </td>
                             @endif
                           </tr>
                         @endforeach
                         {{-- Kraj petlje --}}
-                        
+
                         </tbody>
                       </table>
 
