@@ -8,7 +8,7 @@
 
                 <div class="card">
 
-                    <div class="card-header">{{ \Illuminate\Support\Facades\Auth::user()->name }} - Informacije
+                    <div class="card-header">{{ Auth::user()->name }} - Informacije
 
                     </div>
                     <div class="card-body">
@@ -22,15 +22,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <td>{{ \Illuminate\Support\Facades\Auth::user()->name }}</td>
-                                <td>{{ \Illuminate\Support\Facades\Auth::user()->email }}</td>
-                                <td>{{ implode(', ', \Illuminate\Support\Facades\Auth::user()->roles()->get()->pluck('name')->toArray()) }}</td>
+                                <td>{{ Auth::user()->name }}</td>
+                                <td>{{ Auth::user()->email }}</td>
+                                <td>{{ implode(', ', Auth::user()->roles()->get()->pluck('name')->toArray()) }}</td>
                             </tbody>
                         </table>
                     </div>
                 </div>
         <br>
-                @if (\Illuminate\Support\Facades\Auth::user()->hasRole('student'))
+                @if (Auth::user()->hasRole('student'))
                 <div class="card">
                     <div class="card-body">
 
@@ -47,14 +47,19 @@
                                     <td>{{ $subject }}</td>
                                     <td>
                                         @if($totalHeldNum == 0)
-                                            0 %
+                                            Kolegij nije imao predavanja.
                                         @else
 
-                                            {{ (Auth::user()->attendances()
+                                            {{ number_format((Auth::user()->attendances()
                                             ->where('attendance', 'da')
                                             ->where('subject_id', \App\Subject::where('name', $subject)->get()->pluck('id')->first())
                                             ->get()
-                                            ->count()/$totalHeldNum) * 100 }} %
+                                            ->count()/$totalHeldNum) * 100, 2, '.','') }} %
+                                          | ( {{ (Auth::user()->attendances()
+                                            ->where('attendance', 'da')
+                                            ->where('subject_id', \App\Subject::where('name', $subject)->get()->pluck('id')->first())
+                                            ->get()
+                                            ->count()/$totalHeldNum) }} / {{ $totalHeldNum }} )
                                         @endif
                                     </td>
                                 </tr>

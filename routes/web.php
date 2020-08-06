@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profile', 'HomeController@profile');
+Route::get('/profile', 'HomeController@profile')->name('profile');
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
 

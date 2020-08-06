@@ -17,7 +17,7 @@ class CreateAttendanceUserTable extends Migration
             $table->id();
             $table->integer('attendance_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->string('attendance');
+            $table->string('attendance')->default(0);
             $table->timestamps();
         });
     }

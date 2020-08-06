@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
 
         <div class="col-md-8">
-            
+
             <div class="card">
-                
+
                 <div class="card-header">Predavanje iz kolegija {{ $attendance->id }} {{ $attendance->subject->name }} na datum {{ $attendance->date }}
                 </div>
 
@@ -36,14 +36,18 @@
 
                                         <div class="col-md-6">
                                             {{-- <input type="hidden" name="user-id" value="{{ $user->id }}"/> --}}
-                                            <input id="attendance[]" type="text" class="form-control" name="attendance[{{ $user->id }}]" required>
+{{--                                            <input id="attendance[]" type="text" class="form-control" name="attendance[{{ $user->id }}]" required>--}}
+                                            <select name="attendance[{{ $user->id }}]" id="attendance[]">
+                                                <option value="ne">ne</option>
+                                                <option value="da">da</option>
+                                            </select>
                                         </div>
                                     </td>
                                 </tr>
-                                
-                            @endif   
+
+                            @endif
                         @endforeach
-                                
+
                         {{-- Kraj petlje --}}
                         </tbody>
                       </table>
