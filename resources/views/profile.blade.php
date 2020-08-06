@@ -29,7 +29,7 @@
                         </table>
                     </div>
                 </div>
-        <br>
+                <br>
                 @if (Auth::user()->hasRole('student'))
                 <div class="card">
                     <div class="card-body">
@@ -68,7 +68,10 @@
 
                             </tbody>
                         </table>
+                        <a href="{{ route('pdfdownload') }}"><button class="btn btn-primary float-right">PDF Ispis</button></a>
+
                     </div>
+
                 </div>
                 @endif
             </div>

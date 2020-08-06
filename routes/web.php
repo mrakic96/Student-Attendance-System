@@ -40,5 +40,8 @@ Route::resource('/attendances', 'AttendancesController', ['except' => 'show'])->
 Route::get('/attendances/{attendance}/editattendance', 'AttendancesController@editattendance')->name('attendances.editattendance');
 Route::put('/attendances/{attendance}/update', 'AttendancesController@updateattendance')->name('attendances.updateattendance');
 
+//PDF files
+Route::get('/pdf-download', 'PDFController@PDFGenerator')->name('pdfdownload');
+
 
 

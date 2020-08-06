@@ -61,7 +61,7 @@ class User extends Authenticatable
 
     /* F-ja provjerava ima li neki user više uloga.
      *
-     * @return boolean
+     * vraća boolean
      */
     public function hasAnyRoles($roles)
     {
@@ -74,7 +74,7 @@ class User extends Authenticatable
 
     /* F-ja provjerava ima li neki user određenu ulogu.
      *
-     * @return boolean
+     * vraća boolean
      */
     public function hasRole($role)
     {
@@ -87,7 +87,7 @@ class User extends Authenticatable
 
     /* F-ja provjerava ima li neki user više kolegija.
      *
-     * @return boolean
+     * vraća boolean
      */
     public function hasAnySubjects($subjects)
     {
@@ -100,7 +100,7 @@ class User extends Authenticatable
 
     /* F-ja provjerava ima li neki user određeni kolegij.
      *
-     * @return boolean
+     * vraća boolean
      */
     public function hasSubject($subject)
     {
