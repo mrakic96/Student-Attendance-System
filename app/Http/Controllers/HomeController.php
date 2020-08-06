@@ -32,11 +32,14 @@ class HomeController extends Controller
     {
         $subjects = Auth::user()->subjects()->get()->pluck('name', 'id')->all();
         $totalHeldNums = Auth::user()->subjects()->get()->pluck('totalHeld')->all();
-        $userAttendances = Auth::user()->attendances()->get()->all();
+
         return view('profile')->with([
             'subjects' => $subjects,
             'totalHeldNums' => $totalHeldNums
         ]);
+
+/*        Testiranja */
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //        dd(Auth::user()->attendances()
 //                        ->where('attendance', 'da')
 //                        ->where('subject_id', '1')

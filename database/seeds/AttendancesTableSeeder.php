@@ -14,7 +14,7 @@ class AttendancesTableSeeder extends Seeder
     public function run()
     {
         Attendance::truncate();
-        
-        Attendance::create(['description' => 'asdfasdfasf', 'date' => '2020-08-05', 'subject_id' => '2']);
+
+//        Attendance::create(['description' => 'asdfasdfasf', 'date' => '2020-08-05', 'subject_id' => '2']);
     }
 }
