@@ -27,6 +27,7 @@
     <h2 style="text-align: center; ">Postotak dolaznosti na predavanja za pojedini kolegij</h2>
     <br>
     <h4>Student: {{ Auth::user()->name }}</h4>
+    <h4>Indeks: {{ Auth::user()->index }}</h4>
     <h4>Email: {{ Auth::user()->email }}</h4>
     <br>
     <br>

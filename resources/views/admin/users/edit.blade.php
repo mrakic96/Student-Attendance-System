@@ -50,8 +50,8 @@
                                 <div class="form-check">
                                     <input type="checkbox" name="roles[]" value="{{ $role->id }}"
                                     {{-- Provjeravamo je li trenutna uloga dodijeljena korisniku --}}
-                                    @if ($user->roles->pluck('id')->contains($role->id)) 
-                                        checked 
+                                    @if ($user->roles->pluck('id')->contains($role->id))
+                                        checked
                                     @endif>
                                     <label>{{ $role->name }}</label>
                                 </div>
@@ -69,8 +69,8 @@
                                   <div class="form-check">
                                       <input type="checkbox" name="subjects[]" value="{{ $subject->id }}"
                                       {{-- Provjeravamo je li trenutni kolegij dodijeljen korisniku --}}
-                                      @if ($user->subjects->pluck('id')->contains($subject->id)) 
-                                          checked 
+                                      @if ($user->subjects->pluck('id')->contains($subject->id))
+                                          checked
                                       @endif>
                                       <label>{{ $subject->name }}</label>
                                   </div>
@@ -78,9 +78,22 @@
                           </div>
                         </div>
                         {{-- Kraj petlje --}}
+                      <div class="form-group row">
+                          <label for="index" class="col-md-2 col-form-label text-md-right">Indeks</label>
+
+                          <div class="col-md-6">
+                              <input title="xxxx/rr     x-broj" id="index" type="text" class="form-control @error('index') is-invalid @enderror" name="index" value="{{ $user->index }}" autofocus>
+
+                              @error('index')
+                              <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                              @enderror
+                          </div>
+                      </div>
                       <button type="submit" class="btn btn-primary float-right">Spremi</button>
                   </form>
-                    
+
                 </div>
             </div>
         </div>

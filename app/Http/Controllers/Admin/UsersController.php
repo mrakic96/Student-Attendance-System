@@ -79,7 +79,8 @@ class UsersController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'index' => $request->index
         ]);
 
         $user->roles()->sync($request->roles);

@@ -30,9 +30,10 @@
                           <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Ime</th>
+                            <th scope="col">Indeks</th>
                             <th scope="col">Email</th>
                             <th scope="col">Uloga/e</th>
-                            <th scope="col">Kolegiji</th>
+{{--                            <th scope="col">Kolegiji</th>--}}
                             <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
@@ -47,9 +48,10 @@
 
                             <th scope="row">{{ $user->id }}</th>
                             <td>{{ $user->name }}</td>
+                            <td>{{ $user->index }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
-                            <td>{{ implode(', ', $user->subjects()->get()->pluck('name')->toArray()) }}</td>
+{{--                            <td>{{ implode(', ', $user->subjects()->get()->pluck('name')->toArray()) }}</td>--}}
                                   <td>
                                       <a href="{{ route('admin.users.profile', $user->id) }}"><button type="button" class="btn btn-primary float-left" title="Informacije o korisniku" style="margin-right: 2px;"><i class="far fa-eye"></i></button></a>
                                   </td>

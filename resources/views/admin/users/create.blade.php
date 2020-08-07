@@ -82,11 +82,24 @@
                           </div>
                         </div>
                         {{-- Kraj petlje --}}
+                      <div class="form-group row">
+                          <label for="index" class="col-md-2 col-form-label text-md-right">Indeks</label>
 
-                      
+                          <div class="col-md-6">
+                              <input title="xxxx/rr" id="index" type="text" class="form-control @error('index') is-invalid @enderror" name="index" value="" autofocus>
+
+                              @error('index')
+                              <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                              @enderror
+                          </div>
+                      </div>
+
+
                       <button type="submit" class="btn btn-primary float-right">Spremi</button>
                   </form>
-                    
+
                 </div>
             </div>
         </div>

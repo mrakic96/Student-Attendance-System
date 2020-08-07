@@ -18,12 +18,18 @@
                             <tr>
                                 <th scope="col">Ime</th>
                                 <th scope="col">Email</th>
+                                @if(Auth::user()->hasRole('student'))
+                                <th scope="col">Indeks</th>
+                                @endif
                                 <th scope="col">Status</th>
                             </tr>
                             </thead>
                             <tbody>
                                 <td>{{ Auth::user()->name }}</td>
                                 <td>{{ Auth::user()->email }}</td>
+                                @if(Auth::user()->hasRole('student'))
+                                <td scope="col">{{ Auth::user()->index }}</td>
+                                @endif
                                 <td>{{ implode(', ', Auth::user()->roles()->get()->pluck('name')->toArray()) }}</td>
                             </tbody>
                         </table>

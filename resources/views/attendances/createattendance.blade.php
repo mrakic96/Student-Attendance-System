@@ -20,6 +20,7 @@
                           <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Student</th>
+                            <th scope="col">Indeks</th>
                             <th scope="col">Prisutnost</th>
                           </tr>
                         </thead>
@@ -29,6 +30,7 @@
                                 <tr>
                                     <th scope="row">{{ $user->id }}</th>
                                     <td>{{ $user->name }}</td>
+                                    <td>{{ $user->index }}</td>
                                     <td>
                                         {{-- <label for="attendance" class="col-md-2 col-form-label text-md-right">prisutan</label> --}}
 
