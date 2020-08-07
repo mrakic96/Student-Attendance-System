@@ -53,10 +53,10 @@
 
 
 
-                      
-                      <button type="submit" class="btn btn-primary float-right">Spremi</button>
+
+                      <button type="submit" class="btn btn-primary float-right">Nastavi</button>
                   </form>
-                    
+
                 </div>
             </div>
         </div>

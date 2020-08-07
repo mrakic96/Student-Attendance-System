@@ -7,6 +7,7 @@ use App\User;
 // use App\Role;
 use App\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AttendancesController extends Controller
@@ -43,14 +44,17 @@ class AttendancesController extends Controller
      */
     public function store(Request $request)
     {
-
+        $users = User::all();
         $attendance = Attendance::create([
             'description' => $request->description,
             'date' => $request->date,
             'subject_id' => $request->subject
         ]);
         DB::table('subjects')->where('id', $attendance->subject_id)->increment('totalHeld');
-        return redirect(route('attendances.index'));
+        return view('attendances.createattendance')->with([
+            'attendance'=> $attendance,
+            'users' => $users
+        ]);
     }
 
     /**
@@ -64,16 +68,7 @@ class AttendancesController extends Controller
 
     }
 
-    public function editattendance(Attendance $attendance)
-    {
-        $users = User::all();
-        return view ('attendances.editattendance')->with([
-            'attendance'=> $attendance,
-            'users' => $users
-        ]);
-    }
-
-    public function updateattendance(Request $request, Attendance $attendance)
+    public function storeattendance(Request $request, Attendance $attendance)
     {
 
         foreach($request->attendance as $key => $value) {
@@ -123,6 +118,37 @@ class AttendancesController extends Controller
         return redirect()->route('attendances.index');
     }
 
+    public function editattendance (Attendance $attendance){
+        $users = User::all();
+        return view('attendances.editattendance')->with([
+            'attendance' => $attendance,
+            'users' => $users
+        ]);
+//        dd(DB::table('attendance_user')
+//            ->where(['attendance_id' => 1, 'user_id' => 4])
+//            ->select('attendance'));
+//        dd(DB::table('attendance_user')
+//            ->select('attendance')
+//            ->where(['attendance_id' => 1, 'user_id' => 4])->get()->pluck('attendance')->first());
+
+    }
+
+    public function updateattendance (Request $request, Attendance $attendance){
+
+        foreach($request->attendance as $key => $value) {
+            DB::table('attendance_user')
+                ->where(['attendance_id' => $attendance->id, 'user_id' =>  $key])
+                ->update([
+                    'attendance_id' => $attendance->id,
+                    'user_id' => $key,
+                    'attendance' => $value,
+                ]);
+        }
+
+        return redirect()->route('attendances.index');
+
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -133,6 +159,8 @@ class AttendancesController extends Controller
     {
         $attendance->delete();
         DB::table('subjects')->where('id', $attendance->subject_id)->decrement('totalHeld');
+        DB::table('attendance_user')->where('attendance_id', $attendance->id)->delete();
+
         return redirect()->route('attendances.index');
     }
 

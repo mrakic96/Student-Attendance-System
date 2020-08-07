@@ -9,11 +9,21 @@
             border: 1px solid black;
             border-collapse: collapse;
         }
+        .container {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+
     </style>
 
     <title>PDF Generator</title>
 </head>
 <body>
+<div class="container">
     <h2 style="text-align: center; ">Postotak dolaznosti na predavanja za pojedini kolegij</h2>
     <br>
     <h4>Student: {{ Auth::user()->name }}</h4>
@@ -63,8 +73,15 @@
     @endif
     <p><small>*(Ukupna dolaznost studenta / (podijeljeno sa) ukupan broj predavanja) * (puta) 100</small></p>
     <br>
-    <hr style="float: right; margin-right: 0px; width: 120px;">
-    <p style="float: right;">FSRE Mostar</p>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <hr style="text-align: right; margin-right: 0px; width: 120px;">
+    <p style="text-align: right;">Datum: {{ date('d.m.Y.') }} u {{ date('H:i') }} h</p>
+    <p style="text-align: right;">FSRE Mostar</p>
+</div>
 </body>
 </html>
 

@@ -5,22 +5,22 @@
     <div class="row justify-content-center">
 
         <div class="col-md-8">
-            
+
             <div class="card">
-                
+
                 <div class="card-header">Kolegiji
                 <a href="{{ route('admin.subjects.create') }}"><button type="button" class="btn btn-primary btn float-right" title="Novi kolegij"><i class="fas fa-plus"></i></button></a>
 
                 </div>
 
                 <div class="card-body">
-                    
+
                     <table class="table">
                         <thead>
                           <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Naziv</th>
-                            <th scope="col">Action</th>
+                            <th scope="col"></th>
                           </tr>
                         </thead>
                         <tbody>

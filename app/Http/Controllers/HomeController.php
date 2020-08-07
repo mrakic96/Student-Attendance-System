@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -45,8 +44,9 @@ class HomeController extends Controller
 //                        ->where('subject_id', '1')
 //                        ->get()
 //                        ->all());
-//        dd(Auth::user()->subjects()->get()->pluck('name', 'id')->all());
-//        dd(\App\Subject::where('name', 'Matematika 1')->get()->pluck('id')->first());
+//        dd(Auth::user()->getAttribute('name'));
+
+
     }
 
 }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 //Pocetni view - index page
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
 //Auth routes
@@ -40,8 +40,11 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 
 //Predavanja
 Route::resource('/attendances', 'AttendancesController', ['except' => 'show'])->middleware('can:manage-attendances');
+Route::get('/attendances/createattendance')->name('attendances.createattendance');
+Route::put('/attendances/{attendance}/store', 'AttendancesController@storeattendance')->name('attendances.storeattendance');
 Route::get('/attendances/{attendance}/editattendance', 'AttendancesController@editattendance')->name('attendances.editattendance');
-Route::put('/attendances/{attendance}/update', 'AttendancesController@updateattendance')->name('attendances.updateattendance');
+Route::put('/attendances/{attendance}/updateattendance','AttendancesController@updateattendance')->name('attendances.updateattendance');
+
 
 //PDF files
 Route::get('/pdf-download', 'PDFController@PDFGenerator')->name('pdfdownload');
