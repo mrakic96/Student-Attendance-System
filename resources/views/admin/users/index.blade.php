@@ -13,12 +13,14 @@
 
                 </div>
                 <ul class="nav nav-tabs">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.users.administratori') }}">Administratori</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.users.profesori') }}">Profesori</a>
-                  </li>
+                  @can('manage-users')
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.users.administratori') }}">Administratori</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.users.profesori') }}">Profesori</a>
+                      </li>
+                  @endcan
                   <li class="nav-item">
                     <a class="nav-link active" href="#">Studenti</a>
                   </li>
@@ -55,6 +57,7 @@
                                   <td>
                                       <a href="{{ route('admin.users.profile', $user->id) }}"><button type="button" class="btn btn-primary float-left" title="Informacije o korisniku" style="margin-right: 2px;"><i class="far fa-eye"></i></button></a>
                                   </td>
+                              @can('manage-users')
                                   <td>
                                       <a href="{{ route('admin.users.edit', $user->id) }}"><button type="button" class="btn btn-primary float-left" title="Uredi korisnika" style="margin-right: 2px;"><i class="far fa-edit"></i></button></a>
                                   </td>
@@ -65,6 +68,7 @@
                                           <button type="submit" class="btn btn-danger" title="Izbriši korisnika"><i class="far fa-trash-alt"></i></button>
                                       </form>
                                   </td>
+                              @endcan
                             @endif
                           </tr>
                         @endforeach

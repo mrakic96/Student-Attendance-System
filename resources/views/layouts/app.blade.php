@@ -69,12 +69,17 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                     {{-- Postavljen gate manage-users --}}
-                                    @can('manage-users')
-                                    <a class="dropdown-item" href="{{ route('admin.users.index') }}">
-                                        User management
-                                    </a>
-                                    @endcan
-
+                                    @if(Auth::user()->hasRole('admin'))
+                                        <a class="dropdown-item" href="{{ route('admin.users.index') }}">
+                                            User management
+                                        </a>
+                                    @else
+                                        @can('see-users')
+                                        <a class="dropdown-item" href="{{ route('admin.users.index') }}">
+                                            Studenti
+                                        </a>
+                                        @endcan
+                                    @endif
                                     @can('manage-users')
                                     <a class="dropdown-item" href="{{ route('admin.subjects.index') }}">
                                         Kolegiji

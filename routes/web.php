@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 
 //Admin panel
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 //    Useri
     Route::resource('/users', 'UsersController', ['except' => 'show']);
     Route::get('/users/administratori', 'UsersController@administratori')->name('users.administratori');
@@ -34,7 +34,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     Route::get('/users/{user}/profile/', 'UsersController@profile')->name('users.profile');
 
 //    Kolegiji
-    Route::resource('/subjects', 'SubjectsController', ['except' => 'show']);
+    Route::resource('/subjects', 'SubjectsController', ['except' => 'show'])->middleware('can:manage-users');
 
 });
 

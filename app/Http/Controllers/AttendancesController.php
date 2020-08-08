@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\User;
-// use App\Role;
 use App\Subject;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AttendancesController extends Controller

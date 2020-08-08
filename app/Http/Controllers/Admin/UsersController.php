@@ -26,22 +26,38 @@ class UsersController extends Controller
      */
     public function index()
     {
+        if(Gate::denies('see-users')){
+            return redirect(route('admin.users.index'));
+        }
+
         $users = User::all();
         return view('admin.users.index')->with('users', $users);
     }
     public function profesori()
     {
+        if(Gate::denies('manage-users')){
+            return redirect(route('admin.users.index'));
+        }
+
         $users = User::all();
         return view('admin.users.profesori')->with('users', $users);
     }
     public function administratori()
     {
+        if(Gate::denies('manage-users')){
+            return redirect(route('admin.users.index'));
+        }
+
         $users = User::all();
         return view('admin.users.administratori')->with('users', $users);
     }
 
     public function profile(User $user)
     {
+        if(Gate::denies('see-users')){
+            return redirect(route('admin.users.index'));
+        }
+
         $subjects = $user->subjects()->get()->pluck('name', 'id')->all();
         $totalHeldNums = $user->subjects()->get()->pluck('totalHeld')->all();
 
@@ -60,6 +76,10 @@ class UsersController extends Controller
      */
     public function create()
     {
+        if(Gate::denies('manage-users')){
+            return redirect(route('admin.users.index'));
+        }
+
         $roles = Role::all();
         $subjects = Subject::all();
         return view('admin.users.create')->with([
@@ -76,6 +96,10 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        if(Gate::denies('manage-users')){
+            return redirect(route('admin.users.index'));
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -97,14 +121,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        $subjects = $user->subjects()->get()->pluck('name', 'id')->all();
-        $totalHeldNums = $user->subjects()->get()->pluck('totalHeld')->all();
 
-        return view ('admin.users.show')->with([
-            'user' => $user,
-            'subjects' => $subjects,
-            'totalHeldNums' => $totalHeldNums
-        ]);
     }
 
     /**
@@ -138,6 +155,10 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if(Gate::denies('manage-users')){
+            return redirect(route('admin.users.index'));
+        }
+
         $user->roles()->sync($request->roles);
         $user->subjects()->sync($request->subjects);
 
@@ -168,6 +189,8 @@ class UsersController extends Controller
 
         $user->roles()->detach();
         $user->subjects()->detach();
+        $user->attendances()->detach();
+
         $user->delete();
 
         return redirect()->route('admin.users.index');
