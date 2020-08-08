@@ -61,11 +61,11 @@
                                             ->where('subject_id', \App\Subject::where('name', $subject)->get()->pluck('id')->first())
                                             ->get()
                                             ->count()/$totalHeldNum) * 100, 2, '.','') }} %
-                                          | ( {{ (Auth::user()->attendances()
+                                          | ( {{ Auth::user()->attendances()
                                             ->where('attendance', 'da')
                                             ->where('subject_id', \App\Subject::where('name', $subject)->get()->pluck('id')->first())
                                             ->get()
-                                            ->count()/$totalHeldNum) }} / {{ $totalHeldNum }} )
+                                            ->count() }} / {{ $totalHeldNum }} )
                                         @endif
                                     </td>
                                 </tr>
