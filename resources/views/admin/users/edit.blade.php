@@ -65,16 +65,15 @@
                         <label class="col-md-2 col-form-label text-md-right">Kolegiji</label>
                           <div class="col-md-6">
                             <br>
+                            <select name="subjects[]" class="form-control" id="slect2subjects" multiple="multiple">
                             @foreach ($subjects as $subject)
-                                  <div class="form-check">
-                                      <input type="checkbox" name="subjects[]" value="{{ $subject->id }}"
-                                      {{-- Provjeravamo je li trenutni kolegij dodijeljen korisniku --}}
-                                      @if ($user->subjects->pluck('id')->contains($subject->id))
-                                          checked
-                                      @endif>
-                                      <label>{{ $subject->name }}</label>
-                                  </div>
+                            @if($user->subjects->pluck('id')->contains($subject->id))
+                                <option value="{{ $subject->id }}" selected="true">{{ $subject->name }}</option>
+                            @else
+                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                            @endif 
                             @endforeach
+                            </select>
                           </div>
                         </div>
                         {{-- Kraj petlje --}}
