@@ -43,7 +43,7 @@
                         <label for="subject" class="col-md-2 col-form-label text-md-right">Kolegij</label>
                         <div class="col-md-6">
 
-                            <select name="subject" class="form-control" id="">
+                            <select name="subject" class="form-control" id="slect2subjects">
                             @foreach ($subjects as $subject)
                                 <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                             @endforeach

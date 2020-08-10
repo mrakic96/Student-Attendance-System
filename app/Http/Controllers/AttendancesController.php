@@ -29,8 +29,10 @@ class AttendancesController extends Controller
     public function create()
     {
         $subjects = Subject::all();
+        $subjectname = Subject::all()->pluck('name', 'id');
         return view('attendances.create')->with([
-            'subjects' => $subjects
+            'subjects' => $subjects,
+            'subjectname' => $subjectname
             ]);
     }
 
