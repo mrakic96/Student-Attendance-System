@@ -71,14 +71,12 @@
                       {{-- Iteriramo sve kolegije kroz petlju--}}
                       <div class="form-group row">
                         <label class="col-md-2 col-form-label text-md-right">Kolegiji</label>
-                          <div class="col-md-6">
-                            <br>
+                          <div class="col-md-6">                           
+                            <select name="subjects[]" class="form-control" id="slect2subjects" multiple="multiple">
                             @foreach ($subjects as $subject)
-                                  <div class="form-check">
-                                      <input type="checkbox" name="subjects[]" value="{{ $subject->id }}">
-                                      <label>{{ $subject->name }}</label>
-                                  </div>
+                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                             @endforeach
+                            </select>
                           </div>
                         </div>
                         {{-- Kraj petlje --}}

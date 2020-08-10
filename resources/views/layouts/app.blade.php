@@ -122,7 +122,7 @@
             </div>
         </main>
     </div>
-    @stack('scripts')
+    
     <script type="text/javascript">
         $(document).ready(function() {
     $('#slect2subjects').select2();
