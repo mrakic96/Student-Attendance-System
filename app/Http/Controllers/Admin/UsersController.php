@@ -9,6 +9,7 @@ use App\Subject;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use DataTables;
 
 
 class UsersController extends Controller
@@ -24,14 +25,23 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if(Gate::denies('see-users')){
             return redirect(route('admin.users.index'));
         }
-
-        $users = User::all();
-        return view('admin.users.index')->with('users', $users);
+        if ($request->ajax()) {
+            $data = User::latest()->get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('admin.users.index');
     }
     public function profesori()
     {

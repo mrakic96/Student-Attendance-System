@@ -26,60 +26,44 @@
                   </li>
                 </ul>
                 <div class="card-body">
-
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Ime</th>
-                            <th scope="col">Indeks</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Uloga/e</th>
-{{--                            <th scope="col">Kolegiji</th>--}}
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {{-- Iteriramo sve usere kroz petlju --}}
-                        @foreach ($users as $user)
-                          <tr>
-                            @if ($user->hasRole('student'))
-
-                            <th scope="row">{{ $user->id }}</th>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->index }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
-{{--                            <td>{{ implode(', ', $user->subjects()->get()->pluck('name')->toArray()) }}</td>--}}
-                                  <td>
-                                      <a href="{{ route('admin.users.profile', $user->id) }}"><button type="button" class="btn btn-primary float-left" title="Informacije o korisniku" style="margin-right: 2px;"><i class="far fa-eye"></i></button></a>
-                                  </td>
-                              @can('manage-users')
-                                  <td>
-                                      <a href="{{ route('admin.users.edit', $user->id) }}"><button type="button" class="btn btn-primary float-left" title="Uredi korisnika" style="margin-right: 2px;"><i class="far fa-edit"></i></button></a>
-                                  </td>
-                                  <td>
-                                      <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="float-left">
-                                          @csrf
-                                          {{ method_field('DELETE') }}
-                                          <button type="submit" class="btn btn-danger" title="Izbriši korisnika"><i class="far fa-trash-alt"></i></button>
-                                      </form>
-                                  </td>
-                              @endcan
-                            @endif
-                          </tr>
-                        @endforeach
-                        {{-- Kraj petlje --}}
-
-                        </tbody>
-                      </table>
+                    <table class="table table-bordered data-table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Index</th>
+                <th width="100px">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+
+  $(function () {
+    var table = $('.data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('admin.users.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'email', name: 'email'},
+            {data: 'index', name: 'index'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ]
+    });    
+  });
+</script>
+@endpush

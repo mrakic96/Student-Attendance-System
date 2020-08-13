@@ -105,3 +105,10 @@
 </div>
 @endsection
 
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+    $('#slect2subjects').select2();
+});
+    </script>
+@endpush
