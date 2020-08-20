@@ -45,17 +45,13 @@
                       <div class="form-group row">
                       <label class="col-md-2 col-form-label text-md-right">Uloge</label>
                         <div class="col-md-6">
-                          <br>
-                          @foreach ($roles as $role)
-                                <div class="form-check">
-                                    <input type="checkbox" name="roles[]" value="{{ $role->id }}"
-                                    {{-- Provjeravamo je li trenutna uloga dodijeljena korisniku --}}
-                                    @if ($user->roles->pluck('id')->contains($role->id))
-                                        checked
-                                    @endif>
-                                    <label>{{ $role->name }}</label>
-                                </div>
-                          @endforeach
+                          <select name="roles" class="form-control">
+                            @foreach ($roles as $role)
+                                @if ($user->roles->pluck('id')->contains($role->id))
+                                <option value="{{ $role->id }}" selected="true">{{ $role->name }}</option>
+                                @endif
+                            @endforeach
+                            </select>
                         </div>
                       </div>
                       {{-- Kraj petlje --}}
@@ -64,7 +60,6 @@
                       <div class="form-group row">
                         <label class="col-md-2 col-form-label text-md-right">Kolegiji</label>
                           <div class="col-md-6">
-                            <br>
                             <select name="subjects[]" class="form-control" id="slect2subjects" multiple="multiple">
                             @foreach ($subjects as $subject)
                             @if($user->subjects->pluck('id')->contains($subject->id))

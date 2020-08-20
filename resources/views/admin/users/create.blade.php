@@ -56,14 +56,12 @@
                       {{-- Iteriramo sve uloge kroz petlju--}}
                       <div class="form-group row">
                       <label class="col-md-2 col-form-label text-md-right">Uloga</label>
-                        <div class="col-md-6">
-                          <br>
-                          @foreach ($roles as $role)
-                                <div class="form-check">
-                                    <input type="checkbox" name="roles[]" value="{{ $role->id }}">
-                                    <label>{{ $role->name }}</label>
-                                </div>
-                          @endforeach
+                        <div class="col-md-6">                          
+                          <select name="roles" class="form-control">
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                            </select>
                         </div>
                       </div>
                       {{-- Kraj petlje --}}
@@ -109,6 +107,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
     $('#slect2subjects').select2();
+    
 });
     </script>
 @endpush
