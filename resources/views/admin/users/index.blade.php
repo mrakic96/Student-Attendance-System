@@ -33,7 +33,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Index</th>
-                <th width="100px">Action</th>
+                <th width="150px">Action</th>
             </tr>
         </thead>
         <tbody>
