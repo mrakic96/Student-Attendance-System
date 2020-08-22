@@ -26,7 +26,17 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
                             </tbody>
+                            
                         </table>
+                        @if(Auth::user()->hasRole('admin')) 
+                            <td>
+                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="float-right">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Jeste li sigurni?')" title="Izbriši korisnika"><i class="far fa-trash-alt"></i></button>
+                                </form>
+                            </td>
+                            @endif
                     </div>
                 </div>
                 <br>

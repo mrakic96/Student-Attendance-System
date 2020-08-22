@@ -37,7 +37,7 @@ class UsersController extends Controller
                     ->addColumn('action', function($row){
                            $btn = '<a href="users/'.$row->id.'/profile" class="edit btn btn-info btn-sm"><i class="far fa-eye"></i></a>';
                            $btn = $btn. ' &nbsp;&nbsp;<a href="users/'.$row->id.'/edit" class="edit btn btn-primary btn-sm"><i class="far fa-edit"></i></a>';
-                           $btn = $btn. '&nbsp;&nbsp;<a href="users/'.$row->id.'/destroy" class="edit btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>';
+                           $btn = $btn. '&nbsp;&nbsp;<a href="users/'.$row->id.'/profile" class="edit btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>';
                             return $btn;
                     })
                     ->rawColumns(['action'])
