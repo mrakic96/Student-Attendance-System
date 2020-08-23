@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Subject;
 use Illuminate\Http\Request;
 use Gate;
+use DataTables;
 
 class SubjectsController extends Controller
 {
@@ -19,10 +20,21 @@ class SubjectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $subjects = Subject::all();
-        return view('admin.subjects.index')->with('subjects', $subjects);
+        if ($request->ajax()) {
+            $data = Subject::latest()->get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                           $btn = '<a href="subjects/'.$row->id.'/edit" class="edit btn btn-primary btn-sm"><i class="far fa-edit"></i></a>';
+                           $btn = $btn. '&nbsp;&nbsp;<a href="subjects/'.$row->id.'/delete" class="edit btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>';
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('admin.subjects.index');
     }
 
     /**
@@ -85,6 +97,13 @@ class SubjectsController extends Controller
         return redirect()->route('admin.subjects.index');
     }
 
+
+    public function delete(Subject  $subject)
+    {
+        return view('admin.subjects.delete')->with([
+            'subject' => $subject,
+        ]);
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -14,35 +14,17 @@
                 </div>
 
                 <div class="card-body">
-
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Naziv</th>
-                            <th scope="col"></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {{-- Iteriramo sve kolegije kroz petlju --}}
-                        @foreach ($subjects as $subject)
-                          <tr>
-                            <th scope="row">{{ $subject->id }}</th>
-                            <td>{{ $subject->name }}</td>
-                            <td>
-                                {{-- BUTTONS --}}
-                                <a href="{{ route('admin.subjects.edit', $subject->id) }}"><button type="button" class="btn btn-primary float-left" title="Uredi kolegij" style="margin-right: 5px;"><i class="far fa-edit"></i></button></a>
-                                <form action="{{ route('admin.subjects.destroy', $subject) }}" method="POST" class="float-left">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger" title="Izbriši kolegij"><i class="far fa-trash-alt"></i></button>
-                                </form>
-                            </td>
-                          </tr>
-                        @endforeach
-                        {{-- Kraj petlje --}}
-                        </tbody>
-                      </table>
+                    <table class="table table-bordered data-table">
+                    <thead>
+            <tr>
+                <th>No</th>
+                <th>Naziv</th>
+                <th width="20%">Akcija</th>
+            </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                </table>
 
                 </div>
             </div>
@@ -50,3 +32,21 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+
+  $(function () {
+    var table = $('.data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('admin.subjects.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ]
+    });    
+  });
+</script>
+@endpush

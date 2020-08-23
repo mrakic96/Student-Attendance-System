@@ -30,10 +30,10 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Name</th>
+                <th>Ime</th>
                 <th>Email</th>
                 <th>Index</th>
-                <th width="20%">Action</th>
+                <th width="20%">Akcija</th>
             </tr>
         </thead>
         <tbody>

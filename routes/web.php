@@ -35,7 +35,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 
 //    Kolegiji
     Route::resource('/subjects', 'SubjectsController', ['except' => 'show'])->middleware('can:manage-users');
-
+    Route::get('/subjects/{subject}/delete/', 'SubjectsController@delete')->name('subjects.delete');
 });
 
 //Predavanja
