@@ -161,7 +161,9 @@
     <!-- /.content -->
   </div>
 
-
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
 
 <!-- ./wrapper -->
 
@@ -173,6 +175,7 @@
 <script src="{{ asset('adminlte/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/adminlte.min.js') }}"></script>
+<script src="{{ asset('adminlte/demo.js') }}"></script>
 <!-- Datatables -->
     
     <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
