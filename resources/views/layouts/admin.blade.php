@@ -20,10 +20,17 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3a1382e43c.js" crossorigin="anonymous"></script>
-    <!-- Select2 -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     
+    <script type="text/javascript">
+
+        function studentCheck() {
+            if (document.getElementsById('yesCheck').checked) {
+                document.getElementById('ifYes').style.display = 'block';
+            } else {
+                document.getElementById('ifYes').style.display = 'none';
+            }
+        }
+    </script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
@@ -121,10 +128,12 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="{{ route('admin.users.index') }}" class="nav-link">
+            <a class="nav-link" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
-                Logout
+                {{ __('Logout') }}
               </p>
             </a>
           </li>
@@ -173,6 +182,9 @@
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 @stack('scripts')
 </body>
 </html>
