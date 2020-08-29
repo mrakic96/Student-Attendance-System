@@ -56,7 +56,7 @@
                       {{-- Iteriramo sve uloge kroz petlju--}}
                       <div class="form-group row">
                       <label class="col-md-2 col-form-label text-md-right">Uloga</label>
-                        <div class="col-md-6">                          
+                        <div class="col-md-6">
                           <select name="roles" class="form-control" id="purpose">
                             @foreach ($roles as $role)
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
@@ -69,8 +69,8 @@
                       {{-- Iteriramo sve kolegije kroz petlju--}}
                       <div class="form-group row" id="studentkolegij">
                         <label class="col-md-2 col-form-label text-md-right">Kolegiji</label>
-                          <div class="col-md-6">                           
-                            <select name="subjects[]" class="form-control" id="slect2subjects" multiple="multiple">
+                          <div class="col-md-6" id="test">
+                            <select name="subjects[]" class="form-control" id="slect2subjects" multiple="multiple" >
                             @foreach ($subjects as $subject)
                                 <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                             @endforeach
@@ -112,12 +112,12 @@
       //.....................^.......
       {
         $("#studentshow").show();
-        $("#studentkolegij").show();
+        $("#slect2subjects").prop("disabled", false);
       }
       else
       {
         $("#studentshow").hide();
-        $("#studentkolegij").hide();
+        $("#slect2subjects").prop("disabled", true);
       }
     });
 });
