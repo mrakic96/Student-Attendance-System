@@ -57,7 +57,7 @@
                       <div class="form-group row">
                       <label class="col-md-2 col-form-label text-md-right">Uloga</label>
                         <div class="col-md-6">                          
-                          <select name="roles" class="form-control">
+                          <select name="roles" class="form-control" id="purpose">
                             @foreach ($roles as $role)
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                             @endforeach
@@ -67,7 +67,7 @@
                       {{-- Kraj petlje --}}
 
                       {{-- Iteriramo sve kolegije kroz petlju--}}
-                      <div class="form-group row">
+                      <div class="form-group row" id="studentkolegij">
                         <label class="col-md-2 col-form-label text-md-right">Kolegiji</label>
                           <div class="col-md-6">                           
                             <select name="subjects[]" class="form-control" id="slect2subjects" multiple="multiple">
@@ -78,10 +78,10 @@
                           </div>
                         </div>
                         {{-- Kraj petlje --}}
-                      <div class="form-group row">
+                      <div class="form-group row" id="studentshow" style='display:none;'>
                           <label for="index" class="col-md-2 col-form-label text-md-right">Indeks</label>
 
-                          <div class="col-md-6">
+                          <div class="col-md-6" id="studentshow">
                               <input title="xxxx/rr" id="index" type="text" class="form-control @error('index') is-invalid @enderror" name="index" value="" autofocus>
 
                               @error('index')
@@ -107,7 +107,20 @@
     <script type="text/javascript">
         $(document).ready(function() {
     $('#slect2subjects').select2();
-    
+    $('#purpose').on('change', function() {
+      if ( this.value == '3')
+      //.....................^.......
+      {
+        $("#studentshow").show();
+        $("#studentkolegij").show();
+      }
+      else
+      {
+        $("#studentshow").hide();
+        $("#studentkolegij").hide();
+      }
+    });
 });
     </script>
+
 @endpush
