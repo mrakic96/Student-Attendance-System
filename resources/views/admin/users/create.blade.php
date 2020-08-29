@@ -78,7 +78,7 @@
                           </div>
                         </div>
                         {{-- Kraj petlje --}}
-                      <div class="form-group row" id="studentshow" style='display:none;'>
+                      <div class="form-group row" id="studentshow">
                           <label for="index" class="col-md-2 col-form-label text-md-right">Indeks</label>
 
                           <div class="col-md-6" id="studentshow">
@@ -107,17 +107,21 @@
     <script type="text/javascript">
         $(document).ready(function() {
     $('#slect2subjects').select2();
-    $('#purpose').on('change', function() {
+    $('#purpose').val(function() {
+        $("#studentshow").hide();
+        $("#studentkolegij").hide();
+    });
+    $('#purpose').on('change',function() {
       if ( this.value == '3')
       //.....................^.......
       {
         $("#studentshow").show();
-        $("#slect2subjects").prop("disabled", false);
+        $("#studentkolegij").show();
       }
       else
       {
         $("#studentshow").hide();
-        $("#slect2subjects").prop("disabled", true);
+        $("#studentkolegij").hide();
       }
     });
 });
