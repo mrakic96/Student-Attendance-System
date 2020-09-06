@@ -49,9 +49,12 @@
                             @foreach ($roles as $role)
                                 @if ($user->roles->pluck('id')->contains($role->id))
                                 <option value="{{ $role->id }}" selected="true">{{ $role->name }}</option>
+                                @else
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endif
+
                             @endforeach
-                            </select>
+                           </select>
                         </div>
                       </div>
                       {{-- Kraj petlje --}}

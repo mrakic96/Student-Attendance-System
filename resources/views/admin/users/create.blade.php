@@ -106,25 +106,25 @@
 @push('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-    $('#slect2subjects').select2();
-    $('#purpose').val(function() {
-        $("#studentshow").hide();
-        $("#studentkolegij").hide();
-    });
-    $('#purpose').on('change',function() {
-      if ( this.value == '3')
-      //.....................^.......
-      {
-        $("#studentshow").show();
-        $("#studentkolegij").show();
-      }
-      else
-      {
-        $("#studentshow").hide();
-        $("#studentkolegij").hide();
-      }
-    });
-});
+          $('#slect2subjects').select2();
+          $('#purpose').val(function() {
+              $("#studentshow").hide();
+              $("#studentkolegij").hide();
+          });
+          $('#purpose').on('change',function() {
+            if ( this.value == '3')
+            //.....................^.......
+            {
+              $("#studentshow").show();
+              $("#studentkolegij").show();
+            }
+            else
+            {
+              $("#studentshow").hide();
+              $("#studentkolegij").hide();
+            }
+          });
+        });
     </script>
 
 @endpush

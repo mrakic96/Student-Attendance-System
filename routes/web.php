@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 //Pocetni view - index page
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::guest()) {
+        return view('auth.login');
+    } else {
+        return view('home');
+    }
 });
 
 //Auth routes

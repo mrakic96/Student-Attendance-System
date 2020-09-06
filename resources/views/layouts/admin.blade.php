@@ -42,9 +42,9 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      {{-- <li class="nav-item d-none d-sm-inline-block">
         <a href="../../index3.html" class="nav-link">Home</a>
-      </li>
+      </li> --}}
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -70,7 +70,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
+    <a href="{{ route("home") }}" class="brand-link">
       <img src="../../dist/img/AdminLTELogo.png"
            alt="FSRE"
            class="brand-image img-circle elevation-3"
@@ -86,7 +86,7 @@
           <img src="{{ asset('images/icon-user.svg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="{{ route("profile") }}" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -95,14 +95,27 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
-            <a href="{{ route('admin.users.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Korisnici
-              </p>
-            </a>
-          </li>
+          @if(Auth::user()->hasRole('admin'))
+            <li class="nav-item has-treeview">
+              <a href="{{ route('admin.users.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Korisnici
+                </p>
+              </a>
+            </li>
+          @else
+            @can('see-users')  
+              <li class="nav-item has-treeview">
+                <a href="{{ route('admin.users.index') }}" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    Studenti
+                  </p>
+                </a>
+              </li>
+            @endcan
+          @endif
           <li class="nav-item has-treeview">
             <a href="{{ route('admin.subjects.index') }}" class="nav-link">
               <i class="nav-icon fas fa-book-open"></i>
