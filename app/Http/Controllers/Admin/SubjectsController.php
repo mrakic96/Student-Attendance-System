@@ -116,6 +116,7 @@ class SubjectsController extends Controller
             return redirect(route('admin.subjects.index'));
         }
 
+        $subject->attendances()->delete();
         $subject->delete();
 
         return redirect()->route('admin.subjects.index');
