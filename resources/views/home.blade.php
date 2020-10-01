@@ -14,11 +14,11 @@
                     @endif  
 
                     Dobrodošli, {{ Auth::user()->name }}! <br>
-                    @if($user->hasAnyRoles(['admin', 'profesor']))
+                    @if(Auth::user()->hasAnyRoles(['admin', 'profesor']))
                         
                     @endif  
                     
-                    @if($user->hasRole('student'))
+                    @if(Auth::user()->hasRole('student'))
                         Ispis Vaše dolaznosti na predavanja možete preuzeti na <a href="{{ route("profile") }}">profilu</a>
                     @endif  
                     
