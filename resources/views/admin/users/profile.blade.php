@@ -73,6 +73,7 @@
                                             @endif
                                         </td>
                                     </tr>
+
                                 @endforeach
 
 
@@ -83,8 +84,70 @@
                         </div>
 
                     </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-header"> <b>Izostanci</b>
+
+                        </div>
+                        <div class="card-body">
+
+                            <table class="table">
+                                
+                                <tbody>
+                                @foreach(array_combine($subjects, $totalHeldNums) as $subject => $totalHeldNum)
+                                    
+                                @if ($totalHeldNum == 0 )
+
+                                @elseif ($user->attendances()
+                                ->where('attendance', 'da')
+                                ->where('subject_id', \App\Subject::where('name', $subject)->get()->pluck('id')->first())
+                                ->get()
+                                ->count()/$totalHeldNum == 1)
+                                
+                                @else
+                                    <div class="card float-sm-left" style="width: 18rem; margin-right:15px;">
+                                        <div class="card-body">
+                                          <h5 class="card-title">{{ $subject }}</h5>
+                                            <br>
+                                            <br>
+                                          <p class="card-text">
+
+                                    
+                                                @foreach ($attendances as $attendance)
+                                                    @if($attendance->subject_id == \App\Subject::where('name', $subject)->get()->pluck('id')->first())
+                                                        @if($user->attendances()
+                                                            ->where('attendance_id', $attendance->id)->where('attendance', 'ne')->get()->first())
+                                                        {{ $attendance->date  }}
+                                                        <br>
+                                                        @endif
+                                                    @endif
+            
+                                                @endforeach
+
+                                          </p>
+                                                                                  
+                                        </div>
+                                      </div>
+                                @endif
+
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 @endif
             </div>
         </div>
     </div>
 @endsection
+
+@php
+
+$dolaznost = $user->attendances()
+                                ->where('attendance', 'da')
+                                ->where('subject_id', \App\Subject::where('name', $subject)->get()->pluck('id')->first())
+                                ->get()
+                                ->count()/$totalHeldNum;
+
+@endphp

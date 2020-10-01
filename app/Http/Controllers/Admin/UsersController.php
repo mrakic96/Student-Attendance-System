@@ -73,10 +73,12 @@ class UsersController extends Controller
         }
 
         $subjects = $user->subjects()->get()->pluck('name', 'id')->all();
+        $attendances = $user->attendances()->get()->all();
         $totalHeldNums = $user->subjects()->get()->pluck('totalHeld')->all();
 
         return view ('admin.users.profile')->with([
             'user' => $user,
+            'attendances' => $attendances,
             'subjects' => $subjects,
             'totalHeldNums' => $totalHeldNums
         ]);
