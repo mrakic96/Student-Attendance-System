@@ -45,7 +45,9 @@
 
                             <select name="subject" class="form-control" id="slect2subjects">
                             @foreach ($subjects as $subject)
-                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                @if($subject->users()->get()->count() > 0)
+                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                @endif
                             @endforeach
                             </select>
                         </div>
