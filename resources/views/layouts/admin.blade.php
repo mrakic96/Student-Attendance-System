@@ -71,11 +71,12 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route("home") }}" style="display:block; width: 100px; heigth: 100px;">
-      <img style="margin-left: 20px;" src="{{ asset('/images/logo1.png') }}"
+    <a href="{{ route("home") }}">
+      <br>
+      <img style="margin-left: 20px;" src="{{ asset('/images/rsz_logo1.png') }}"
            alt="FSRE"
-           height="100px"
-           width="100px"
+           height="47px"
+           width="97px"
           >
     </a>
 
