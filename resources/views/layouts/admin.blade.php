@@ -70,12 +70,12 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route("home") }}" class="brand-link">
-      <img src="../../dist/img/AdminLTELogo.png"
+    <a href="{{ route("home") }}" style="display:block; width: 100px; heigth: 100px;">
+      <img style="margin-left: 20px;" src="{{ asset('/images/logo1.png') }}"
            alt="FSRE"
-           class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">FSRE</span>
+           height="100px"
+           width="100px"
+          >
     </a>
 
     <!-- Sidebar -->
@@ -116,6 +116,7 @@
               </li>
             @endcan
           @endif
+          @if(Auth::user()->hasRole('admin'))
           <li class="nav-item has-treeview">
             <a href="{{ route('admin.subjects.index') }}" class="nav-link">
               <i class="nav-icon fas fa-book-open"></i>
@@ -124,6 +125,8 @@
               </p>
             </a>
           </li>
+          @endif
+          @if(Auth::user()->hasAnyRoles(['admin', 'profesor']))
           <li class="nav-item has-treeview">
             <a href="{{ route('attendances.index') }}" class="nav-link">
               <i class="nav-icon fas fa-clipboard-list"></i>
@@ -132,6 +135,8 @@
               </p>
             </a>
           </li>
+          @endif
+
           <li class="nav-item has-treeview">
             <a href="{{ route('profile') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
