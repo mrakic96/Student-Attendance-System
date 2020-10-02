@@ -17,8 +17,10 @@ class AttendancesController extends Controller
      */
     public function index()
     {
-        $attendances = Attendance::all();
+        $attendances = Attendance::orderBy('created_at', 'desc')->paginate(10);
+       
         return view('attendances.index')->with('attendances', $attendances);
+        // dd($attendances);
     }
 
     /**

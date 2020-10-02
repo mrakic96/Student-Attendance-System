@@ -51,6 +51,9 @@
 
                 </div>
             </div>
+            <br>
+            <div style="margin-left: 280px;">{{ $attendances->links() }} </div>
+
         </div>
     </div>
 </div>
