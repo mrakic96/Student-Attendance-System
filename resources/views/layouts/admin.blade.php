@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>FSRE</title>
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/title-icon.ico') }}">
   <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Tell the browser to be responsive to screen width -->

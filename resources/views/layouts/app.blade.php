@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'FSRE') }}</title>
-
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/title-icon.ico') }}">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script><!-- Bio je defer poslije asset -->
     <!-- Select2 -->
