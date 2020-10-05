@@ -22,16 +22,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3a1382e43c.js" crossorigin="anonymous"></script>
     
-    <script type="text/javascript">
-
-        function studentCheck() {
-            if (document.getElementsById('yesCheck').checked) {
-                document.getElementById('ifYes').style.display = 'block';
-            } else {
-                document.getElementById('ifYes').style.display = 'none';
-            }
-        }
-    </script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->

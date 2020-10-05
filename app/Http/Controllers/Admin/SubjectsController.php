@@ -117,6 +117,7 @@ class SubjectsController extends Controller
         }
 
         $subject->attendances()->delete();
+        $subject->users()->detach();
         $subject->delete();
 
         return redirect()->route('admin.subjects.index');

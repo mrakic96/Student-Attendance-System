@@ -141,13 +141,3 @@
         </div>
     </div>
 @endsection
-
-@php
-
-$dolaznost = $user->attendances()
-                                ->where('attendance', 'da')
-                                ->where('subject_id', \App\Subject::where('name', $subject)->get()->pluck('id')->first())
-                                ->get()
-                                ->count()/$totalHeldNum;
-
-@endphp
