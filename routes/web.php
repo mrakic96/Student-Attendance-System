@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+URL::forceRootUrl('https://studenti.sum.ba/projekti/fsre/2020/g2');
+
 //Pocetni view - index page
 Route::get('/', function () {
     if(Auth::guest()) {
