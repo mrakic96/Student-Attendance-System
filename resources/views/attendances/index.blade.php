@@ -32,7 +32,7 @@
                             <th scope="row">{{ $attendance->id }}</th>
                             <td>{{ $attendance->subject->name }}</td>
                             <td>{{ $attendance->description }}</td>
-                            <td>{{ $attendance->date }}</td>
+                            <td>{{ date('d.m.Y.', strtotime($attendance->date)) }}</td>
                             <td>
                                 {{-- BUTTONS --}}
                                 <a href="{{ route('attendances.edit', $attendance->id) }}"><button type="button" class="btn btn-primary float-left" title="Uredi kolegij" style="margin-right: 5px;"><i class="far fa-edit"></i></button></a>

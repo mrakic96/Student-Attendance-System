@@ -117,7 +117,7 @@
                                                     @if($attendance->subject_id == \App\Subject::where('name', $subject)->get()->pluck('id')->first())
                                                         @if($user->attendances()
                                                             ->where('attendance_id', $attendance->id)->where('attendance', 'ne')->get()->first())
-                                                        {{ $attendance->date  }}
+                                                        {{ date('d.m.Y.', strtotime($attendance->date))  }}
                                                         <br>
                                                         @endif
                                                     @endif
