@@ -10,6 +10,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use DataTables;
+use Illuminate\Support\Facades\DB;
 
 
 class UsersController extends Controller
@@ -125,6 +126,21 @@ class UsersController extends Controller
 
         $user->roles()->sync($request->roles);
         $user->subjects()->sync($request->subjects);
+        
+        $subjects = $user->subjects()->get();
+
+       if($user->roles()->where('name', 'student')->first()){
+
+            foreach($subjects as $subject){
+                foreach($subject->attendances()->get() as $attendance){
+                    DB::table('attendance_user')->insert([
+                        'attendance_id' => $attendance->id,
+                        'user_id' => $user->id,
+                        'attendance' => 'ne'
+                        ]);
+                }
+            }
+       }
 
         return redirect(route('admin.users.index'));
     }

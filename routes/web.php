@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// URL::forceRootUrl('https://studenti.sum.ba:86/');
+URL::forceRootUrl('https://studenti.sum.ba:86/');
 
 //Pocetni view - index page
 Route::get('/', function () {
